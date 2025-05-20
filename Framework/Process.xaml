@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data.Common" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
@@ -43,6 +43,13 @@
       <x:String>System.Xml.Serialization</x:String>
       <x:String>System.ComponentModel</x:String>
       <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>System.Linq.Expressions</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -96,9 +103,25 @@
       <AssemblyReference>System.Private.Xml</AssemblyReference>
       <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
       <AssemblyReference>Microsoft.Win32.Primitives</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="995,1207" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <sap:WorkflowViewStateService.ViewState>
+    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+      <x:Boolean x:Key="ShouldExpandAll">True</x:Boolean>
+    </scg:Dictionary>
+  </sap:WorkflowViewStateService.ViewState>
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1518.8000000000002,1564.8" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:Boolean" Name="PageNumber" />
     </Sequence.Variables>
@@ -108,22 +131,34 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="418,173" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
-    <ui:UiElementExists DisplayName="Element Exists 'A'" Exists="[PageNumber]" sap:VirtualizedContainerService.HintSize="418,139" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
-      <ui:UiElementExists.Target>
-        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b7e6609b-db04-4366-a522-81612748bce0" InformativeScreenshot="ae7ab44600bd50b25d20249e85ceb191" Selector="[string.Format(&quot;&lt;html app='chrome.exe' title='ACME System 1 - Work Items' /&gt;&lt;webctrl aaname='{0}' tag='A' /&gt;&quot;, in_TransactionItem)]">
-          <ui:Target.TimeoutMS>
-            <InArgument x:TypeArguments="x:Int32" />
-          </ui:Target.TimeoutMS>
-          <ui:Target.WaitForReady>
-            <InArgument x:TypeArguments="ui:WaitForReady" />
-          </ui:Target.WaitForReady>
-        </ui:Target>
-      </ui:UiElementExists.Target>
-    </ui:UiElementExists>
-    <If Condition="[PageNumber]" sap:VirtualizedContainerService.HintSize="418,800" sap2010:WorkflowViewState.IdRef="If_1">
+    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="483.2,174.4" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
+    <uix:NApplicationCard AttachMode="ByInstance" DisplayName="Use Browser Chrome: ACME System 1 - Work Items" HealingAgentBehavior="Job" sap:VirtualizedContainerService.HintSize="483.2,492.8" sap2010:WorkflowViewState.IdRef="NApplicationCard_2" InteractionMode="DebuggerApi" IsDisplayNameAuto="True" ScopeGuid="2bd290a1-1a97-4a9e-8a6b-a94e63a5a5cb" Version="V2">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="449.6,244" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <uix:NCheckElement DelayBefore="0" DisplayName="Check Element 'Label'" HealingAgentBehavior="SameAsCard" sap:VirtualizedContainerService.HintSize="416,182.4" sap2010:WorkflowViewState.IdRef="NCheckElement_2" Result="[PageNumber]" ScopeIdentifier="2bd290a1-1a97-4a9e-8a6b-a94e63a5a5cb" Version="V4">
+              <uix:NCheckElement.Target>
+                <uix:TargetAnchorable BrowserURL="acme-test.uipath.com/work-items" CVScreenId="126a23fc-e51a-4b5c-8511-738a75ba94bc" CvElementArea="1096, 830, 36, 35" CvType="Icon" DesignTimeRectangle="1101, 833, 28, 27" ElementType="Text" FullSelectorArgument="&lt;webctrl aaname='1' tag='A' /&gt;" Guid="6d2f8bce-e47b-4e6d-be7b-82c75f45b795" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAfCAYAAACGVs+MAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAFBSURBVFhH1ZeBroMgDEX3/3+KYhbfFDX67HJdNKyAFubGdpObGG3piUjBC2XWhd/4tH4LoO97quuaqqqioihIKbUY17iHZ4iJkQigaRoqy3IreGTEIkeiXYBhGEhr7RSQGrkYY09BgLZtnQFTjbFC8gKcWXx1CMIBwCvjyWfZNx0OQNycX8lMM9FkPM9cY2yuJwB8uTwpaF2TGedHohAA5qvjCUC21DRdbx2ttRdFAKCGrQ0ADYQH+21oXDJmmvqOBoBEAMB2s9oA0MV4oN+Gxv+Rur+KlLolAaCWA4BWygOPnQaAWg6A3dvlTgNALQeAB8mcBgB/H0D2Kcj+EcqXoe00AO8ylDci22kA3kYEyVrxaw62YihqM0r07mYExW3HcT7cjqHsBxIo65Fs1ZkQoeJQEADKeiy3le3HhOsdv2Z3YVDZI3mwPusAAAAASUVORK5CYII=" InformativeScreenshot="08728ff9f6c531b82531e841adaab41a.png" ScopeSelectorArgument="[string.Format(&quot;&lt;html app='chrome.exe' title='ACME System 1 - Work Items' /&gt;&lt;webctrl aaname='{0}' tag='A' /&gt;&quot;, in_TransactionItem)]" SearchSteps="Selector, CV" Version="V6" Visibility="Interactive" WaitForReadyArgument="None" />
+              </uix:NCheckElement.Target>
+            </uix:NCheckElement>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="-9, -9, 1938, 1038" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAShSURBVFhHvdd7TFNXHAfw3wbr7NQ94hLnGImTbOJI/GeaZX9sYXMbM5mL8Q/3z2RGk4mbZhth5SVCebT1AmXjoZY9NAiCzJDoyPbHImAVevu6t71t54CWRxYqdEBFnCYE+C3nXm+53NBOsPWPb8gp9/T3yem55wGgYYZBw9wGDTP1iENqDgFoGAyljMS+0I567EIN6WegYYKhhtqGkG9GOGaJTfJJzAJCx9ecIIAp0DL8P9MueFsN3Pi+3Kv+jOwVRuyb1enPyDMKIW1Vlz9DS48dyOwYKYFSO0IxP9KTAoCIjltwT9vgDgM3DrlX/ZC9woh9szr9kGcUQtqqLj9o6THI7BgBxQkW4bgVQSsFFFvx3Wbv0VgDfnRObIkngCI5oMiKO1t9X0YLMDozv2lbras7tcVrkAIMzPirYQFpUQIg4vNxOgfCF0aEQ0Y81j16WQTozWPhAR/9sgBIrHPXKyknA2ob836rr1peSMzWn/4yQrHN+nSlk4srZQ6Svl0376bDwU6EKg7h624EHYsioMIcCA/YdXEBoCx33IUiG0K2Cbed7Q3IC4tJqHUj5JgQSmwIavuZ+wBI+uEGwpFrfNp8U+plA57RcyYosSPkmfHNxr4r8sJiNp3yzPLvtsaOz33HFUoAUNA5sieHDrzW5psKzYHTkebAIkAlZ5YAOuWFJYB58gwBrC53FskAkEMHYOzfucdEQL1jInYAhY4NATae9KCyxIZPUSwm1rmrREADNxllwGnPnAhQSkZgrd6J8K2JX4IVlIMSAU3u6ANCIyAFJNa5EQos/Ob2QrWrSAQ0RhuQFAbwEnk7CKDUjuu/XwHgWf0DA5b8CVYE+FgCWHXCYeF3rXwzbm/o65AXFpNc75nhAVp+r1c/FEC6Eq7VO91QbENQmXBHi/d3eWExiScXCq2udJY/FODt894Q4LPfhi/DNz0IWT34RlO/X15YTDzl5LdyyKaxmgkcFgEv1qwA8FbjAuCMZ/IQv5SSTSXfjL23Z16WF59H3Aq5NFmC+ddt6M7MBhGwvtq1fMB7LYsAoKxwIORahIcLrZh/7eb+cksgufnP4JacrhEVv1eUMghHruPrjX23hu7M8H0jjUBDJMCHku2YANr/nj4Mn14RzotkPmTTqKhwCu0sk3CGJEU+N2JwDj+QAhLJHCA/TZkdN1S7Cx9oBJYAwCftw3bI7EH4qlvoRHY+csAstCL5XKG24r4/RqjgHIIUAFoW4eh1fhJDKVMnApo9ywdA+8D09r1tA7+uoxy4hmIxXsdigp6bTr80eG743qxi+N4syAHvnO+/lVTjmt1s8GBqk1clAs5yETajCADY2zYA6ygHrKFYiNexkKDnIP3SIJDiYQCQVOOCzQYPpDZ5Q9vxKSYCIK3VFzqUxgrws2MiOSxgZ6tv1yMAwJPUUsfyAgvuvjhQduFGcGOVJZBSTi8ORQdSKulAis40yrcrl3jm/1LL/PMKRY/tjicTVG0NXUyEq1kZg3FaFldRDnxcyyIZpmjnCTL0GlZYO4TrIH81ExrkrkauS+T1IrpYRPxu2eW0nx8KDRPgo73/NxZZ/N2kZu9/PqMYP3lO0UYAAAAASUVORK5CYII=" InformativeScreenshot="0b8a4db1c609d91af565abdf5a4cdc07.jpg" Selector="&lt;html app='chrome.exe' title='ACME System 1 - Work Items' /&gt;" Url="https://acme-test.uipath.com/work-items" Version="V2" />
+      </uix:NApplicationCard.TargetApp>
+    </uix:NApplicationCard>
+    <If Condition="[PageNumber]" sap:VirtualizedContainerService.HintSize="483.2,798.4" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,582" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="416,579.2" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <Sequence.Variables>
             <Variable x:TypeArguments="sd:DataTable" Name="dt_TableData" />
           </Sequence.Variables>
@@ -132,20 +167,20 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ACME_ExtractDataTable.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="382,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ACME_ExtractDataTable.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ACME_ExtractDataTable.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="382.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="ACME_ExtractDataTable.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="x:String" x:Key="in_ACME_WorkItemsURL">[in_Config("ACME-WorkItems-URL").ToString]</InArgument>
               <OutArgument x:TypeArguments="sd:DataTable" x:Key="dt_out_ExtractDataTable">[dt_TableData]</OutArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ACME_FilterDataTable.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="382,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="ACME_FilterDataTable.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ACME_FilterDataTable.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="382.4,176" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="ACME_FilterDataTable.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <InOutArgument x:TypeArguments="sd:DataTable" x:Key="io_dt_DataTable">[dt_TableData]</InOutArgument>
               <InArgument x:TypeArguments="x:String" x:Key="in_Type">WI4</InArgument>
               <InArgument x:TypeArguments="x:String" x:Key="in_Status">Open</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
           </ui:InvokeWorkflowFile>
-          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ACME_PopulateQueue.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="382,168" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="ACME_PopulateQueue.xaml">
+          <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="ACME_PopulateQueue.xaml - Invoke Workflow File" sap:VirtualizedContainerService.HintSize="382.4,167.2" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="ACME_PopulateQueue.xaml">
             <ui:InvokeWorkflowFile.Arguments>
               <InArgument x:TypeArguments="sd:DataTable" x:Key="in_dt_FilteredTable">[dt_TableData]</InArgument>
             </ui:InvokeWorkflowFile.Arguments>
@@ -153,7 +188,7 @@
         </Sequence>
       </If.Then>
       <If.Else>
-        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89" sap2010:WorkflowViewState.IdRef="Sequence_3">
+        <Sequence DisplayName="Else" sap:VirtualizedContainerService.HintSize="416,89.6" sap2010:WorkflowViewState.IdRef="Sequence_3">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>

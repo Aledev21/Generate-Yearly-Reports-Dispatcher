@@ -19972,15 +19972,15 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\playc\\.nuget\\packages\\": {}
+    "C:\\Users\\nome.do.usuario\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
       "projectUniqueName": "REF-GenerateYearlyReports-Dispatcher",
       "projectName": "REF-GenerateYearlyReports-Dispatcher",
-      "projectPath": "C:\\Users\\playc\\Documents\\Dispatcher\\Generate-Yearly-Reports-Dispatcher\\.local",
-      "packagesPath": "C:\\Users\\playc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\playc\\Documents\\Dispatcher\\Generate-Yearly-Reports-Dispatcher\\.local",
+      "projectPath": "C:\\Users\\nome.do.usuario\\Documents\\Generate Yearly Report\\Generate-Yearly-Reports-Dispatcher\\.local",
+      "packagesPath": "C:\\Users\\nome.do.usuario\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\nome.do.usuario\\Documents\\Generate Yearly Report\\Generate-Yearly-Reports-Dispatcher\\.local",
       "UsingMicrosoftNETSdk": false,
       "restoreAuditProperties": {
         "enableAudit": "False"
@@ -20010,7 +20010,7 @@
             "version": "[25.10.3, 25.10.3]"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\playc\\AppData\\Local\\Programs\\UiPath\\Studio\\PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\UiPath\\Studio\\PortableRuntimeIdentifierGraph.json"
       }
     },
     "runtimes": {
